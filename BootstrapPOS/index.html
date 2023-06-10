@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POS System</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body style="background-color: #e3f2fd">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow p-3 position-fixed top-0 w-100" style="z-index: 100">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <img alt="" class="d-inline-block " src="Assets/img/pos-logo.png" style="width: 200px">
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-5" id="navbarNav">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a aria-current="page" id="customerNav" class="nav-link" href="#customer">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="itemNav" href="#item">Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="orderNav" href="#order">Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="detailsNav" href="#details">Details</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-------------------------------customer------------------------------->
+
+<section class="pt-5" id="customer" style="height: 100vh">
+    <div class="container bg-white">
+        <div class="row mt-5">
+
+            <!-------------------------------Heading------------------------------->
+
+            <div class="row mt-3">
+                <div class="col-1"><img alt="customer" src="../../../assets/css/fonts/svgs/solid/users.svg"
+                                        style="width: 50px"></div>
+                <h3 class="col">Customers</h3>
+
+                <form class="d-flex col-4">
+                    <input id="txtSearchCus" aria-label="Search" class="form-control me-2 rounded-pill" placeholder="Search" type="search">
+                    <button class="btn btn-outline-success" id="btnSearchCus" type="submit">Search</button>
+                </form>
+            </div>
+
+            <!-------------------------------Title border------------------------------->
+
+
+            <div class="col-12 bg-dark mt-3">
+                <h1 class="text-light fs-5 text-center mt-2">Add/ Delete / Update Customer</h1>
+            </div>
+
+            <!-------------------------------Input text fields------------------------------->
+
+            <div class="mt-5 row">
+                <label class="col-sm-1 col-form-label fw-bold" for="txtCustId">Id</label>
+                <div class="col-sm-5">
+                    <input aria-label="default input example" class="form-control bg-light" id="txtCustId" placeholder="C001"
+                           type="text">
+                    <small id="errorCusId" class="text-danger p-1" style="font-size: 12px"></small>
+                </div>
+
+                <label class="col-sm-1 col-form-label fw-bold" for="txtCustName">Name</label>
+                <div class="col-sm-5">
+                    <input aria-label="default input example" class="form-control bg-light" id="txtCustName"
+                           placeholder="Ruvindi"
+                           type="text">
+                    <small id="errorCusName" class="text-danger p-1" style="font-size: 12px"></small>
+                </div>
+            </div>
+
+            <div class="mt-2 row">
+
+                <label class="col-sm-1 col-form-label fw-bold" for="txtCustAddress">Address</label>
+                <div class="col-sm-5">
+                    <input aria-label="default input example" class="form-control bg-light" id="txtCustAddress"
+                           placeholder="Panadura"
+                           type="text">
+                    <small id="errorCusAddress" class="text-danger p-1" style="font-size: 12px"></small>
+                </div>
+
+                <label class="col-sm-1 col-form-label fw-bold" for="txtCustSalary">Salary</label>
+                <div class="col-sm-5">
+                    <input aria-label="default input example" class="form-control bg-light" id="txtCustSalary"
+                           placeholder="100000"
+                           type="text">
+                    <small id="errorCusSallary" class="text-danger p-1" style="font-size: 12px"></small>
+                </div>
+            </div>
+
+            <!-------------------------------button group------------------------------->
+
+
+            <div aria-label="Basic mixed styles example" class="btn-group mt-4" role="group">
+                <button class="btn btn-danger rounded-pill mx-5" id="btnDeleteCustomer" type="button">Delete</button>
+                <button class="btn btn-warning rounded-pill mx-5" id="btnUpdateCustomer" type="button">Update</button>
+                <button class="btn btn-success rounded-pill mx-5" id="btnSaveCustomer" type="button">Save</button>
+            </div>
+
+            <!-------------------------------Customer table start------------------------------->
+
+            <div class="mt-3" style="height: 35vh; overflow: scroll">
+                <table class="table table-bordered table-primary table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Salary</th>
+                    </tr>
+                    </thead>
+                    <tbody id="customerTable">
+                    <!--<tr>
+                        <th scope="row">C-001</th>
+                        <td>Supun Dananjaya</td>
+                        <td>Negombo</td>
+                        <td>50000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">C-002</th>
+                        <td>Nipun Udana</td>
+                        <td>No.25, Dankotuwa</td>
+                        <td>75000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">C-003</th>
+                        <td>Kavindu Theekshana</td>
+                        <td>Gampaha</td>
+                        <td>75000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">C-004</th>
+                        <td>Nisal piyumantha</td>
+                        <td>Dankotuwa</td>
+                        <td>55000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">C-005</th>
+                        <td>Thushan Chanuka</td>
+                        <td>Kurunagala</td>
+                        <td>40000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">C-006</th>
+                        <td>Namal Rajapaksha</td>
+                        <td>Colombo 7</td>
+                        <td>200000</td>
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-------------------------------Item------------------------------->
+
+<section class="pt-5" id="item" style="height: 100vh">
+    <div class="container bg-white">
+        <div class="row mt-5">
+
+            <!-------------------------------Heading------------------------------->
+
+            <div class="row mt-3">
+                <div class="col-1"><img alt="customer" src="../../../assets/css/fonts/svgs/solid/shopping-cart.svg"
+                                        style="width: 50px"></div>
+                <h3 class="col">Items</h3>
+
+                <form class="d-flex col-4">
+                    <input aria-label="Search" class="form-control me-2 rounded-pill" placeholder="Search items" type="search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+
+            <!-------------------------------Title border------------------------------->
+
+
+            <div class="col-12 bg-dark mt-3">
+                <h1 class="text-light fs-5 text-center mt-2">Add/ Delete / Update Item</h1>
+            </div>
+
+            <!-------------------------------Input text fields------------------------------->
+
+            <div class="mt-5 row">
+                <label class="col-sm-1 col-form-label fw-bold" for="code">Id</label>
+                <div class="col-sm-5">
+                    <input aria-label="default input example" class="form-control bg-light" id="code"
+                           placeholder="I-001"
+                           type="text">
+                </div>
+
+                <label class="col-sm-1 col-form-label fw-bold" for="iName">Item name</label>
+                <div class="col-sm-5">
+                    <input aria-label="default input example" class="form-control bg-light" id="iName"
+                           placeholder="Lemon puff"
+                           type="text">
+                </div>
+            </div>
+
+            <div class="mt-2 row">
+                <label class="col-sm-1 col-form-label fw-bold" for="price">Price</label>
+                <div class="col-sm-5">
+                    <input aria-label="default input example" class="form-control bg-light" id="price"
+                           placeholder="120.00"
+                           type="text">
+                </div>
+
+                <label class="col-sm-1 col-form-label fw-bold" for="qty">Qty</label>
+                <div class="col-sm-5">
+                    <input aria-label="default input example" class="form-control bg-light" id="qty"
+                           placeholder="45"
+                           type="text">
+                </div>
+            </div>
+
+            <!-------------------------------button group------------------------------->
+
+
+            <div aria-label="Basic mixed styles example" class="btn-group mt-4" role="group">
+                <button class="btn btn-danger mx-5 rounded-pill" type="button">Delete</button>
+                <button class="btn btn-warning mx-5 rounded-pill" type="button">Update</button>
+                <button class="btn btn-success mx-5 rounded-pill" type="button">Save</button>
+            </div>
+
+            <!-------------------------------Item table start------------------------------->
+            <div class="mt-3" style="height: 270px; overflow: scroll">
+                <table class="table table-bordered table-primary table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Item name</th>
+                        <th scope="col">price</th>
+                        <th scope="col">qty</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">I-001</th>
+                        <td>Keeri samba 5kg</td>
+                        <td>1200</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">I-002</th>
+                        <td>Happy cow cheese</td>
+                        <td>375</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">I-003</th>
+                        <td>Candos Milk chocolate</td>
+                        <td>100</td>
+                        <td>20</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-------------------------------order page start------------------------------->
+
+<section class="pt-5" id="order" style="height: 100vh">
+    <div class="container bg-light mt-5">
+        <div class="mt-5">
+            <h3 class="text-center">Place Order</h3>
+            <div class="row ">
+                <div class="col ">
+                    <div class="bg-secondary rounded-pill">
+                        <h4 class="text-center text-light py-1">Invoice details</h4>
+                    </div>
+
+                    <div class="container bg-secondary">
+                        <form class="row">
+                            <div class="mb-3 col">
+                                <label class="form-label" for="orderId">Order ID</label>
+                                <input class="form-control" id="orderId" placeholder="O-001"
+                                       type="text">
+                            </div>
+                            <div class="mb-3 col">
+                                <label class="form-label" for="cName">Customer name</label>
+                                <input class="form-control" id="cName" placeholder="Jesse Pinkman"
+                                       type="text">
+                            </div>
+
+                            <div class="dropdown show d-inline-flex">
+                                <a aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle"
+                                   data-toggle="dropdown" id="dropdownMenuLink" role="button">
+                                    Customer IDS
+                                </a>
+
+                                <div aria-labelledby="Customer Ids" class="dropdown-menu">
+
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3 col">
+                                <label class="form-label" for="date">Date</label>
+                                <input class="form-control" id="date" placeholder="dd/mm/yyyy"
+                                       type="text">
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label class="form-label" for="cAddress">Address</label>
+                                <input class="form-control" id="cAddress" placeholder="Colombo 7"
+                                       type="text">
+                            </div>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+                <div class="col">
+                    <div class="bg-secondary rounded-pill">
+                        <h4 class="text-light text-center py-1">Items</h4>
+                    </div>
+                    <div class="container bg-secondary">
+                        <div class="row">
+
+                            <div class="dropdown show d-inline-flex">
+                                <a aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle"
+                                   data-toggle="dropdown" id="ItemsList" role="button">
+                                    Item IDS
+                                </a>
+
+                                <div aria-labelledby="Item Ids" class="dropdown-menu">
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="mb-3 col">
+                                    <label class="form-label" for="ItemName">Item Name</label>
+                                    <input class="form-control" id="ItemName" placeholder="Lemon puff"
+                                           type="text">
+                                </div>
+
+                                <div class="mb-3 col">
+                                    <label class="form-label" for="itemPrice">Price </label>
+                                    <input class="form-control" id="itemPrice" placeholder="120"
+                                           type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label class="form-label" for="qtyOnh">QTYonHand</label>
+                                    <input class="form-control" id="qtyOnh" placeholder="200"
+                                           type="text">
+                                </div>
+
+                                <div class="mb-3 col">
+                                    <label class="form-label" for="orderQty">Order Qty</label>
+                                    <input class="form-control" id="orderQty" placeholder="2"
+                                           type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div>
+                        <h4 class="text-primary">Total : 240RS/=</h4>
+
+                        <h4 class="text-danger">Sub Total : 220RS/=</h4>
+                        <div class="container">
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label class="form-label" for="cash">cash</label>
+                                    <input class="form-control" id="cash" placeholder="500"
+                                           type="text">
+                                </div>
+
+                                <div class="mb-3 col">
+                                    <label class="form-label" for="Discount">Discount</label>
+                                    <input class="form-control" id="Discount" placeholder="20"
+                                           type="text">
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label class="form-label" for="balance">Balance</label>
+                                <input class="form-control" id="balance" placeholder="280"
+                                       type="text">
+                            </div>
+                            <div>
+                                <div class="d-grid gap-2 d-md-flex ">
+                                    <button class="btn btn-danger me-md-2 rounded-pill" type="button">Add To Cart</button>
+
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button class="btn btn-success justify-content-md-end rounded-pill" type="button">Purchase
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="text-center py-1">Cart</h4>
+
+        <div class="mt-3" style="height: 200px; overflow: scroll">
+            <table class="table table-bordered table-primary table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Item code</th>
+                    <th scope="col">Item name</th>
+                    <th scope="col">price</th>
+                    <th scope="col">qty</th>
+                    <th scope="col">total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">I-001</th>
+                    <td>lemon puff</td>
+                    <td>120</td>
+                    <td>2</td>
+                    <td>240</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<!------------------------------- Details page start------------------------------->
+
+<section class="mt-5" id="details" style="height: 91vh">
+
+    <div class="container">
+        <div class="row bg-light ">
+            <div class="row mt-5">
+                <div class="col-1"><img alt="Details" src="../../../assets/css/fonts/svgs/solid/th-list.svg"
+                                        style="width: 50px"></div>
+                <h3 class="col">Details</h3>
+
+                <form class="d-flex col-4">
+                    <input aria-label="Search" class="form-control me-2 rounded-pill" placeholder="Search" type="search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="mt-3" style="height: 70vh; overflow: scroll">
+                <table class="table table-bordered table-primary table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">order Id</th>
+                        <th scope="col">Item Id</th>
+                        <th scope="col">Customer Id</th>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Order Time</th>
+                        <th scope="col">QTY</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">O-001</th>
+                        <td>I-001</td>
+                        <td>C-001</td>
+                        <td>20-01-2022</td>
+                        <td>11.11AM</td>
+                        <td>2</td>
+                        <td>220</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<script crossorigin="anonymous"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<script src="Assets/jQuery/jquery-3.6.0.min.js"></script>
+<script src="Assets/js/script.js"></script>
+</html>
